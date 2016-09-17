@@ -1,19 +1,23 @@
-result = []
-
+indent = ""
 # DFS
 def permute(nums):
-    res = []
-    dfs(nums, [], res)
-    return res
+    '''
+    Backtracking algorithm
+    '''
+    solutions = []
+    solve_rec([], nums, solutions)
+    return solutions
 
-def dfs(nums, path, res):
-    if not nums:
-        res.append(path)
-        return # backtracking
-    for i in xrange(len(nums)):
-        dfs(nums[:i]+nums[i+1:], path+[nums[i]], res)
+def solve_rec(soFar, rest, solutions):
+    enter(soFar)
+    if not rest:
+        solutions.append(soFar) # backtracking
+    for i in xrange(len(rest)):
+        remaining = rest[:i]+rest[i+1:]
+        solve_rec(soFar+[rest[i]], remaining, solutions)
 
 
 S = [1, 2, 3]
-for i in permute(S):
-    print i
+permute(S)
+#for i in permute(S):
+    #print i
