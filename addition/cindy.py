@@ -45,14 +45,19 @@ def solvable_bug1(board):
 
 def solvable_bug2(board):
     if isSolved(board):
+        print board
         return True
     for i in xrange(len(board)):
         # In canMove(i, board), board has already been new board !
-        print i, board
+        # Save current board status
         oldboard = board[:]
         if (tryMove(i, board)):
+            # Board after move
             if solvable_bug2(board):
-                print board
+                # Board is solvable, however, here the board has been changed
+                # So after return from solvable_bug2, oldboard is pop out, and you
+                # should return that value !
+                print oldboard
                 return True
         # Recover board !
         board = oldboard[:]
@@ -99,9 +104,11 @@ def solvable(board):
         print i, board
         if (canMove(i, board)):
             newboard = makeMove(i, board)
+            print "push in" + str(newboard)
             if solvable(newboard):
                 print newboard
                 return True
+            print "pop out" + str(newboard)
     return False
 
 
