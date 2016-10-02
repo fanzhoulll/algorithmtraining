@@ -9,7 +9,6 @@ def permute(nums):
     return solutions
 
 def solve_rec(soFar, rest, solutions):
-    enter(soFar)
     if not rest:
         solutions.append(soFar) # backtracking
     for i in xrange(len(rest)):
@@ -19,5 +18,5 @@ def solve_rec(soFar, rest, solutions):
 
 S = [1, 2, 3]
 permute(S)
-#for i in permute(S):
-    #print i
+for i in permute(S):
+    print i
