@@ -1,4 +1,4 @@
-def binarySearchHelper(nums, target, lo, hi):
+def binarySearchSuckHelper(nums, target, lo, hi):
     if lo > hi:
         return -1
     m = lo + (hi-lo)/2
@@ -15,10 +15,28 @@ def binarySearchHelper(nums, target, lo, hi):
         return 0
 
 
-def binarySearch(nums, target):
+def binarySearch_suck(nums, target):
     if not nums:
         return -1
     return binarySearchHelper(nums, target, 0, len(nums)-1)
 
-nums = [1,1,1,1,1,4,4,5,7,7,8,9,9,10]
+def binarySearch(nums, target):
+    if not nums:
+        return -1
+    lo = 0
+    hi = len(nums) - 1
+    while (lo <= hi):
+        m = lo + (hi - lo)/2
+        if target < nums[m]:
+            hi = m - 1
+        elif target > nums[m]:
+            lo = m + 1
+        else:
+            hi = m - 1
+    if nums[lo] == target:
+        return lo
+    else:
+        return -1
+
+nums = [4,4,4,4]
 print binarySearch(nums, 1)

@@ -13,10 +13,27 @@ def searchInsertHelper(nums, target, lo, hi):
     else:
         return m
 
-def searchInsert(nums, target):
+
+def searchInsert_rec(nums, target):
     if not nums:
         return 0
     return searchInsertHelper(nums, target, 0, len(nums)-1)
 
-nums = [3]
-print searchInsert(nums, 4)
+def searchInsert(nums, target):
+    if not nums:
+        return 0
+    lo = 0
+    hi = len(nums) - 1
+    while (lo <= hi):
+        m = lo + (hi - lo)/2
+        if target < nums[m]:
+            hi = m - 1
+        elif target > nums[m]:
+            lo = m + 1
+        else:
+            return m
+    return lo
+
+
+nums = [1,2,3]
+print searchInsert(nums, 7)
